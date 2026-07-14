@@ -8,7 +8,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY..
 
-RUN pip install. && pip install pytest pytest-asyncio httpx respx
+RUN pip install.
 
 FROM python:3.11-slim
 
@@ -18,7 +18,7 @@ COPY --from=builder /app /app
 
 COPY --from=builder /root/.cache/pip /root/.cache/pip
 
-RUN useradd -m appuser && chown -R appuser /app
+RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 USER appuser
 
